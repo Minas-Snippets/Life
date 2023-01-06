@@ -12,6 +12,7 @@ body {
     overflow:        hidden;
     background-color: var(--grey);
     position: relative;
+    touch-action: none;
 }
 
 ::selection {
