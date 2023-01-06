@@ -1,0 +1,467 @@
+:root {
+    --grey:  #6a7069;
+    --green: #45c234;
+}
+
+body {
+    margin:     0;
+    padding:    0;
+    height: 100vh;
+    width:  100vw;
+    font-family: sans-serif;
+    overflow:        hidden;
+    background-color: var(--grey);
+    position: relative;
+}
+
+::selection {
+    color : #45c234;
+    background: black;
+}
+
+#canvas {
+    position: absolute;
+    top:  0;
+    left: 0;
+    margin: 0;
+    width: 100vw;
+    height: 65vh;
+    border: none;
+    background-color: black;
+    z-index: 100;
+    overflow: hidden;
+}
+
+body.horizontal #canvas {
+    width:   65vw;
+    height: 100vh;    
+}
+
+body.full #canvas {
+    top: 0;
+    left: 0;
+    width:  100vw;
+    height: 100vh;
+    cursor: none;
+}
+
+#menu {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 65vh;
+    left: 0;
+    width: 100vw;
+    height: 35vh;
+    z-index: 100;
+}
+
+body.horizontal #menu {
+    top:     0;
+    left: 65vw;
+    height: 100vh;
+    width:   35vw;
+}
+
+svg {
+    cursor: pointer;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width:  29.33vw;
+    height: 29.33vw;
+    left:       2vw;
+    top: calc((35vh - 29.33vw)/2);
+}
+
+#qm {
+    fill: var(--green);
+    font-weight: bold;
+    font-size: 8px;
+}
+
+body.horizontal svg {
+    width:  29.33vh;
+    height: 29.33vh;
+    left: calc((35vw - 29.33vh)/2);
+    top:       2vh;
+}
+
+.svgSmall {
+    width:  min(29.33vw,15.5vh);
+    height: min(29.33vw,15.5vh);
+    left:   calc((33.33vw - min(29.33vw,15.5vh))/2);
+    top:    calc((17.50vh - min(29.33vw,15.5vh))/2);
+}
+
+body.horizontal .svgSmall {
+    width:  min(29.33vh,15.5vw);
+    height: min(29.33vh,15.5vw);
+    left:   calc((17.50vw - min(29.33vh,15.5vw))/2);
+    top:    calc((33.33vh - min(29.33vh,15.5vw))/2);
+}
+
+    
+.p11 {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 33.33vw;
+    height: 17.5vh;
+    display:none;
+    z-index:110;
+}
+
+body.horizontal .p11 {
+    top: 0;
+    left: 0;
+    height: 33.33vh;
+    width: 17.5vw;
+}
+
+body.init .p11 {
+    display: block;
+}
+
+.p12 {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 17.5vh;
+    left: 0;
+    width: 33.33vw;
+    height: 17.5vh;
+    display:none;
+}
+
+body.horizontal .p12 {
+    top: 0;
+    left: 17.5vw;
+    height: 33.33vh;
+    width: 17.5vw;
+}
+
+body.init .p12 {
+    display: block;
+}
+
+.p1 {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 33.33vw;
+    height: 35vh;
+    display: block;
+}
+
+body.horizontal .p1 {
+    top: 0;
+    left: 0;
+    height: 33.33vh;
+    width: 35vw;
+}
+
+body.init .p1 {
+    display: none;
+}
+
+#stop {
+    display: none;
+}
+
+body.run #stop {
+    display: block;
+}
+
+#start2 {
+    display: block;
+}
+
+body.run #start2 {
+    display: none;
+}
+
+body.init #start2 {
+    display: none;
+}
+
+.p21 {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 33.33vw;
+    width: 33.33vw;
+    height: 17.5vh;
+    display:none;
+}
+
+body.horizontal .p21 {
+    top: 33.33vh;
+    left: 0;
+    height: 33.33vh;
+    width: 17.5vw;
+}
+
+body.init .p21 {
+    display: block;
+}
+
+body.run .p21 {
+    display: block;
+}
+
+#zoomIn {
+    display: none;
+}
+
+body.run #zoomIn {
+    display: block;
+}
+
+#zoomOut {
+    display: none;
+}
+
+body.run #zoomOut {
+    display: block;
+}
+
+#draw {
+    display: none;
+}
+
+/*body.init #zoomIn {
+    display: block;
+}*/
+
+#erase {
+    display: none;
+}
+
+/*body.init #erase {
+    display: block;
+}*/
+
+#random {
+    display: none;
+}
+
+.p22 {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 17.5vh;
+    left: 33.33vw;
+    width: 33.33vw;
+    height: 17.5vh;
+    display:none;
+}
+
+body.horizontal .p22 {
+    top: 33.33vh;
+    left: 17.5vw;
+    height: 33.33vh;
+    width: 17.5vw;
+}
+
+body.init .p22 {
+    display: block;
+}
+
+body.run .p22 {
+    display: block;
+}
+
+.p2 {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 33.33vw;
+    width: 33.33vw;
+    height: 35vh;
+    display:block;
+}
+
+body.horizontal .p2 {
+    top: 33.33vh;
+    left: 0;
+    height: 33.33vh;
+    width: 35vw;
+}
+
+body.init .p2 {
+    display: none;
+}
+
+body.run .p2 {
+    display: none;
+}
+
+div.p3 {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 66.67vw;
+    width: 33.33vw;
+    height: 35vh;
+    display:block;
+}
+
+body.horizontal div.p3 {
+    top: 66.67vh;
+    left: 0;
+    height: 33.33vh;
+    width: 35vw;
+}
+
+body.full #menu {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.textButton {
+    display: inline-block;
+    position: absolute;
+    background-color:black;
+    margin: 0;
+    height: 24vmin;
+    width:  24vmin;
+    left: 1.7vmin;
+    top: calc(17.5vh - 15vw);
+    border-style: solid;
+    border-width: 3vmin;
+    border-color: var(--green);
+    border-radius:15vmin;
+    cursor: pointer;
+}
+
+body.horizontal .textButton {
+    height: 24vmin;
+    width:  24vmin;
+    top: 1.7vmin;
+    left: calc(17.5vw - 15vh);
+    border-style: solid;
+    border-width: 3vmin;
+    border-color: var(--green);
+    border-radius:15vmin;
+    cursor: pointer;
+}
+
+
+.textButton b {
+    position:relative;
+    display: inline-block;
+    top:-4.5vmin;
+}
+
+.button {
+    background-color: black;
+    padding:0;
+    color : #45c234;
+    text-align: center;
+    height: 15vmin;
+    width:  15vmin;
+    border-style: outset;
+    border-width: 1vmin;
+    border-color: black;
+    border-radius:5.5vmin;
+    font-size: 13vmin;
+    font-weight:bold;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button.active {
+    border-style: inset;
+}
+
+.button img {
+    height: 15vmin;
+    width: 15vmin;
+}
+
+.button b {
+    display: block;
+    top: 0;
+    left: 0;
+    height: 15vmin;
+    width:  15vmin;
+    margin: 0;
+    display: block;
+    margin-top: -2vmin;
+}
+
+.fullGreen {
+    fill: var(--green);
+    stroke: none;
+}
+
+.strokeGreen {
+    stroke: var(--green);
+    fill: none;
+}
+
+.fullBlack {
+    fill: black;
+    stroke: none;
+}
+
+/*svg {
+    height: 15vmin;
+    width: 15vmin;
+    margin:0;
+    background-color: black;
+}
+
+svg polygon {
+    fill: #45c234;
+    stroke: #45c234;
+    stroke-width: 0.25;
+    stroke-linecap: round;
+}
+
+svg.die {
+    height: 15vmin;
+    width: 15vmin;
+    margin:0;
+    background-color: black;
+    fill: none;
+    stroke: #45c234;
+    stroke-width: 0.1;
+    stroke-linecap: round;
+}
+
+svg rect {
+    fill: #45c234;
+    stroke: #45c234;
+    stroke-width: 0.25;
+    stroke-linecap: round;
+}
+
+svg.die circle {
+    stroke: none;
+    fill: #45c234;
+}
+*/
+
+#info {
+    position: absolute;
+    bottom: 1vh;
+    left: 3vw;;
+    color: white;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 4vh;
+    z-index: 350;
+}
+

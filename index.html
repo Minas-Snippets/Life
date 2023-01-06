@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta property="og:type" content= "website" />
+    <!--
+    <meta property="og:url" content="https://el-arenero.de/conway.php"/>
+    <meta property="og:site_name" content="El Arenero" />
+    -->
+    <meta property="og:title" content="Conway's Game of Life">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="images/conway_preview.png">
+    <meta property="og:description" content="Draw shapes on the screen and see jow they evolve according to the rules of Conway's Game of Life">
+    <meta name="twitter:card" content="summary"/>
+    <!--
+    <meta name="twitter:domain" content="el-arenero.de"/>
+    -->
+    <meta name="twitter:title" property="og:title" itemprop="name" content="Conway's Game of Life" />
+    <meta name="twitter:description" property="og:description" itemprop="description" 
+    content="A cellular automataton. Draw shapes on the screen and see jow they evolve according to the rules of Conway's Game of Life" />
+    <!--
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    -->
+    <title>Game of Life</title>
+    <link href="life.css" rel="stylesheet">
+    <link rel="icon" 
+      type="image/png" 
+      href="images/conway_icon.png">
+    <script type="text/javascript" src="a2.js"></script>
+    <script type="text/javascript" src="life.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', event => initConway());
+        window.addEventListener('resize',           event => rescale()   );
+    </script>
+    <script>
+    </script>
+</head>
+<header>
+</header>
+<main>
+<canvas id="canvas"></canvas>
+</main>
+
+<div id="menu">
+    <div id="start1" class="p11">
+        <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" onclick="startGame()" class="svgSmall">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <polygon points="3.5,2 8,5 3.5,8" class="fullGreen"/>
+        </svg>
+    </div>
+    <div id="start2" class="p1">
+        <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" onclick="startGame()">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <polygon points="3.5,2 8,5 3.5,8" class="fullGreen"/>
+        </svg>
+    </div>
+    <div id="stop" class="p1">
+        <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" onclick="breakGame()">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <polygon points="2.5,2.5 7.5,2.5 7.5,7.5 2.5,7.5" class="fullGreen"/>
+        </svg>
+    </div>
+    <div id="reset1" class="p12">
+      <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" onclick="initWorld()" class="svgSmall">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+        <path d="M 7.75,5 A 2.75,2.75,0 1,1 5,2.25" stroke-width="0.75" class="strokeGreen"/>
+        <polygon points="4.75,1.4 5.75,2.25 4.75,3.1" class="fullGreen" />
+      </svg>
+
+    </div>
+
+    <div id="draw" class="p21">
+      <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <text id="qm" x="3.2" y="8">D</text>
+      </svg>
+    </div>
+    <div id="erase" class="p21">
+          <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <text id="qm" x="3.2" y="8">E</text>
+      </svg>
+
+    </div>
+    <div id="random" class="p22">
+          <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" onclick="initWorld()">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <text id="qm" x="3.2" y="8">R</text>
+      </svg>
+
+    </div>
+    <div id="zoomIn" class="p21">
+      <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" class="svgSmall" onclick="zoomIn()">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <line x1="2" y1="5" x2="8" y2="5" stroke-width="1" class="strokeGreen"/>
+          <line x1="5" y1="2" x2="5" y2="8" stroke-width="1" class="strokeGreen"/>
+      </svg>
+    </div>
+    <div id="zoomOut" class="p22">
+      <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" class="svgSmall" onclick="zoomOut()">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <line x1="2" y1="5" x2="8" y2="5" stroke-width="1" class="strokeGreen"/>
+      </svg>
+    </div>
+    <div id="reset2" class="p2">
+      <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" onclick="initWorld()">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+        <path d="M 7.75,5 A 2.75,2.75,0 1,1 5,2.25" stroke-width="0.75" class="strokeGreen"/>
+        <polygon points="4.75,1.4 5.75,2.25 4.75,3.1" class="fullGreen" />
+      </svg>
+    </div>
+    <div id="help" class="p3">
+      <svg viewbox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" onclick="initWorld()">
+          <circle cx="5" cy="5" r="5"   class="fullGreen"/>
+          <circle cx="5" cy="5" r="4"   class="fullBlack"/>
+          <text id="qm" x="3.2" y="8">?</text>
+      </svg>
+    </div>
+    
+<!--
+items:
+  after launch/reset: start, reset | draw/erase, random | help  (3 cols/rows) 
+  after start:        stop  | zoom in, zoom out | help           (3 cols/rows - last one is 1/2 of the menu) 
+  after stop:         start | reset | help                      (3 cols/rows)
+geometry:
+  horizontal: right  1/3
+  vertical:   bottom 1/3
+-->
+</div>
+
+
+<body>
+</body>
+</html>
