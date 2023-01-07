@@ -280,7 +280,7 @@ function penMouseStart(e) {
 
 function penTouchStart(e) {
     e.preventDefault();
-    multitouch = e.touches.length > 0;
+    multitouch = e.touches.length > 1;
     
     let x0 = e.touches[0].clientX;
     let y0 = e.touches[0].clientY;
@@ -317,7 +317,7 @@ function penMouseMove(e) {
 
 function penTouchMove(e) {
     e.preventDefault();
-    multitouch = e.touches.length > 0;
+    multitouch = e.touches.length > 1;
     let x0 = e.touches[0].clientX;
     let y0 = e.touches[0].clientY;
     let x1 = multitouch ? e.touches[1].clientX : x0;
@@ -389,7 +389,7 @@ function penMouseEnd(e) {
 
 function penTouchEnd(e) {
     e.preventDefault();
-    multitouch = e.touches.length > 0;
+    multitouch = e.touches.length > 1;
     let x0 = e.touches[0].clientX;
     let y0 = e.touches[0].clientY;
     let x1 = multitouch ? e.touches[1].clientX : x0;
